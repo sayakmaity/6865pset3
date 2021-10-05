@@ -22,27 +22,27 @@ using namespace std;
 // This is a way for you to test your functions.
 // We will only grade the contents of demosaic.cpp and align.cpp
 int main() {
-  cout << "nothing done in a3_main.cpp, debug me !" << endl;
+  // cout << "nothing done in a3_main.cpp, debug me !" << endl;
   // // Denoise ---------------------------
   // // Load sequence
-  // vector<Image> seq;
-  // int n_images = 4;
-  // for (int i = 1; i <= n_images; ++i) {
-  //     ostringstream fname;
-  //     // fname << "./Input/aligned-ISO400/1D2N-iso400-";
-  //     fname << "./Input/aligned-ISO3200/1D2N-iso3200-";
-  //     fname << i;
-  //     fname << ".png";
-  //     seq.push_back(Image(fname.str()));
-  // }
-  //
-  // // Denoise
-  // Image out = denoiseSeq(seq);
-  // out.write("./Output/denoised.png");
-  //
-  // Image SNRIm = logSNR(seq,1/30.0);
-  // SNRIm.write("./Output/snr_map.png");
-  //
+  vector<Image> seq;
+  int n_images = 4;
+  for (int i = 1; i <= n_images; ++i) {
+      ostringstream fname;
+      // fname << "./Input/aligned-ISO400/1D2N-iso400-";
+      fname << "./Input/aligned-ISO3200/1D2N-iso3200-";
+      fname << i;
+      fname << ".png";
+      seq.push_back(Image(fname.str()));
+  }
+  
+  // Denoise
+  Image out = denoiseSeq(seq);
+  out.write("./Output/denoised-3200.png");
+  
+  Image SNRIm = logSNR(seq,1/30.0);
+  SNRIm.write("./Output/snr_map-3200-f.png");
+  
   // // Demosaic ---------------------------
   // Image raw("./Input/raw/signs-small.png");
   // Image green = basicGreen(raw, 1);
