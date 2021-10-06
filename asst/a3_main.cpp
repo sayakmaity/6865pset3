@@ -46,8 +46,8 @@ int main()
   // Image SNRIm = logSNR(seq, 1 / 30.0);
   // SNRIm.write("./Output/snr_map-400-f.png");
 
-  // Image denoisedAndAligned = denoiseSeq(seq);
-  // denoisedAndAligned.write("./Output/green_denoisedonly.png");
+  Image denoisedAndAligned = alignAndDenoise(seq);
+  denoisedAndAligned.write("./Output/green_slowAlignDenoise.png");
   // const Image mit1 = create_special();
   // const Image mit2 = create_special2();
   // // mit1.write("./Output/mit1.png");
@@ -79,7 +79,7 @@ int main()
   rgb3.write("./Output/demosaiced_greenbased.png");
   //
   // // Sergey ---------------------------
-  Image sergeyImg("./Input/Sergey/01880v_third.png");
+  Image sergeyImg("./Input/Sergey/00907v_third.png");
   Image rgb4 = split(sergeyImg);
   rgb4.write("./Output/Sergey_split.png");
   Image rgbAlign = sergeyRGB(sergeyImg,10);

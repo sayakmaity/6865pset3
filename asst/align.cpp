@@ -139,6 +139,53 @@ vector<int> align(const Image &im1, const Image &im2, int maxOffset)
   return output;
 }
 
+
+vector<int> fastAlign(const Image &im1, const Image &im2, int maxOffset)
+{
+  // // --------- HANDOUT  PS03 ------------------------------
+  // returns the (x,y) offset that best aligns im2 to match im1.
+
+  int minX = 0;
+  int minY = 0;
+  float best = pow(10, 100000);
+  for (int i = -maxOffset; i <= maxOffset; i+=2)
+  {
+    for (int j = -maxOffset; j <= maxOffset; j+=2)
+    {
+      float diff = 0;
+
+      for (int x = maxOffset; x < im1.width() - maxOffset; x+=2)
+      {
+        for (int y = maxOffset; y < im1.height() - maxOffset; y+=2)
+        {
+          for (int z = 0; z < im1.channels(); z++)
+          {
+            float val1 = im1.smartAccessor(x + i, y + j, z, true);
+            float val2 = im2.smartAccessor(x, y, z, true);
+
+            diff += pow(val1 - val2, 2);
+          }
+        }
+      }
+
+      // cout << i << "," << j << " " << diff << endl;
+
+      if (diff < best)
+      {
+        best = diff;
+        minX = i;
+        minY = j;
+      }
+    }
+  }
+  // cout << minX << "," << minY << " " << best << endl;
+  vector<int> output;
+  output.push_back(minX);
+  output.push_back(minY);
+
+  return output;
+}
+
 Image alignAndDenoise(const vector<Image> &imSeq, int maxOffset)
 {
   // // --------- HANDOUT  PS03 ------------------------------
