@@ -18,6 +18,7 @@ using namespace std;
 
 // Special image
 Image create_special();
+Image create_special2();
 
 // Brightness and contrast
 Image brightness(const Image &im, float factor);

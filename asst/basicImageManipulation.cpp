@@ -36,6 +36,56 @@ Image create_special() {
   return im;
 }
 
+Image create_special2() {
+  // // --------- HANDOUT  PS01 ------------------------------
+  // create the image outlined in the handout
+  // return Image(1,1,1); // change this
+
+  // --------- SOLUTION PS01 ------------------------------
+  Image im(290, 150, 3);
+  im.set_color(1.0f, 1.0f, 1.0f);
+  int offset = 20;
+  int xstart[] = {0, 51-offset, 102-offset, 154-offset, 154-offset, 206-offset, 206-offset};
+  int ystart[] = {0, 0, 0, 0, 48-offset, 0, 48-offset};
+  int xend[] = {30-offset, 82-offset, 133-offset, 185-offset, 185-offset, 288-offset, 237-offset};
+  int yend[] = {148-offset, 101-offset, 148-offset, 29-offset, 148-offset, 29-offset, 148-offset};
+  for (int i = 0; i < 7; ++i) {
+    if (i != 4)
+      im.create_rectangle(xstart[i], ystart[i], xend[i], yend[i], 0.64f, 0.12f,
+                          0.2f);
+    else
+      im.create_rectangle(xstart[i], ystart[i], xend[i], yend[i], 0.55f, 0.55f,
+                          0.55f);
+  }
+  return im;
+}
+
+
+// Image create_special() {
+//   // // --------- HANDOUT  PS01 ------------------------------
+//   // create the image outlined in the handout
+//   // return Image(1,1,1); // change this
+
+//   // --------- SOLUTION PS01 ------------------------------
+//   Image im(290, 150, 3);
+//   im.set_color(1.0f, 1.0f, 1.0f);
+//   int offset = 20;
+//   int xstart[] = {};
+//   int ystart[] = {};
+//   int xend[] = {};
+//   int yend[] = {};
+//   for (int i = 0; i < 7; ++i) {
+//     if (i != 4)
+//       im.create_rectangle(xstart[i], ystart[i], xend[i], yend[i], 0.64f, 0.12f,
+//                           0.2f);
+//     else
+//       im.create_rectangle(xstart[i], ystart[i], xend[i], yend[i], 0.55f, 0.55f,
+//                           0.55f);
+//   }
+//   return im;
+// }
+
+
 // Change the brightness of the image
 // const Image & means a reference to im will get passed to the function,
 // but the compiler won't let you modify it within the function.
